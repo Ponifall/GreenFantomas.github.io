@@ -275,6 +275,70 @@
             </div>
           </div>
         </div>
+
+        <div>
+          <div class="row">
+            <h2>Энтропия информации</h2>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-text">
+                    Под энтропией понимается мера неопределенности системы.
+                    Частная энтропия по Шеннону <var>h</var> определяется по
+                    формуле
+                    <mark
+                      ><var>h</var> = -<var>p<sub>i</sub></var
+                      >*log<sub>2</sub><var>p<sub>i</sub></var></mark
+                    >
+                    где <var>p<sub>i</sub></var> - вероятность нахождения
+                    системы в состоянии, для которого рассчитывается энтропия.
+                    Общей энтропией называется сумма всех энтропий системы.
+                  </p>
+
+                  <label
+                    for="entropyStatus"
+                    class="form-label"
+                    id="entropyStatusLable"
+                    >Кол-во состояний</label
+                  >
+                  <input
+                    type="range"
+                    class="form-range"
+                    min="1"
+                    max="8"
+                    step="1"
+                    id="entropyStatus"
+                    onchange="showEntropyNumber()"
+                  />
+                  <div class="row g-1" id="entropyRow"></div>
+
+                  <div class="row g-1" style="margin-top: 10px">
+                    <div class="col">
+                      <div class="input-group">
+                        <span class="input-group-text">H</span>
+                        <input
+                          id="allEntropy"
+                          type="text"
+                          class="form-control"
+                          readonly="readonly"
+                        />
+                      </div>
+                      <div class="form-text">Идёт в <b>ответ</b>.</div>
+                    </div>
+                    <div class="col">
+                      <button
+                        class="btn btn-primary"
+                        onclick="calcAllEntropy()"
+                      >
+                        Вычислить общую энтропию
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -286,5 +350,57 @@
     ></script>
 
     <script src="math.js"></script>
+    <script>
+      entropyVerElement = `<div class="col-md-6">
+                        <div class="input-group">
+                          <span class="input-group-text"
+                            ><var>p<sub>X</sub></var></span
+                          >
+                          <input
+                            id="entropyX"
+                            type="text"
+                            class="form-control"
+                            onchange="countPrivateEntropy(X)"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group">
+                          <span class="input-group-text"><var>h<sub>X</sub></var></span>
+                          <input
+                            id="entropyHX"
+                            type="text"
+                            class="form-control"
+                            readonly="readonly"
+                          />
+                        </div>
+                      </div>`;
+
+      function showEntropyNumber() {
+        $("#entropyRow").html("");
+        $("#entropyStatusLable").text(
+          "Кол-во состояний: " + $("#entropyStatus").val()
+        );
+
+        for (i = 0; i < $("#entropyStatus").val(); i++) {
+          $("#entropyRow").html(
+            $("#entropyRow").html() + entropyVerElement.replaceAll("X", i + 1)
+          );
+        }
+      }
+
+      function countPrivateEntropy(index) {
+        p = $("#entropy" + index).val();
+        $("#entropyH" + index).val(entropy(p));
+      }
+
+      function calcAllEntropy() {
+        sum = 0;
+        for (i = 1; i <= $("#entropyStatus").val(); i++) {
+          sum += parseFloat($("#entropyH" + i).val());
+        }
+        $("#allEntropy").val(sum);
+      }
+    </script>
   </body>
 </html>

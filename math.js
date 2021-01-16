@@ -51,3 +51,7 @@ function calcLog2() {
         : "1";
     $("#decodedThreeBits").val(final);
   }
+
+  function entropy(p){
+    return -1*p*Math.log2(p);
+  }
