@@ -1,8 +1,150 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
   <head>
-    <title>Test</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+
+    <title>Шпаргалка информатика</title>
   </head>
   <body>
-    test page
+    <main class="container">
+      <div class="text-center py-5 px-3">
+        <h1>Сессия по информатике</h1>
+        <p class="lead">Шпоры и калькуляторы для сдачи инфы.<br /></p>
+      </div>
+
+      <h2>Таблица ASCII</h2>
+      <div class="row">
+        <!-- char to ASCII-->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">ASCII код символа</h5>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="charToAscii" class="form-label">Символ</label>
+                  <input
+                    type="text"
+                    maxlength="1"
+                    class="form-control"
+                    id="charToAscii"
+                  />
+                  <div class="form-text">Символ для получения ascii кода</div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text">#</span>
+                    <input
+                      id="asciiNum"
+                      type="text"
+                      class="form-control"
+                      readonly="readonly"
+                    />
+                  </div>
+                  <div class="form-text">Номер символа в ascii таблице.</div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group">
+                    <span class="input-group-text">HEX</span>
+                    <input
+                      id="asciiHex"
+                      type="text"
+                      class="form-control"
+                      readonly="readonly"
+                    />
+                  </div>
+                  <div class="form-text">
+                    Шестнадцатеричный номер в ascii таблице. Идёт в
+                    <b>ответ</b>.
+                  </div>
+                </div>
+                <br />
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  onclick="getAsciiCode()"
+                >
+                  Перевести
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--ASCII to char-->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body h-100 d-flex flex-column">
+              <h5 class="card-title">Символ по коду ASCII</h5>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="numToAscii" class="form-label"
+                    >Номер символа</label
+                  >
+                  <input id="numToAscii" type="text" class="form-control" />
+                  <div class="form-text">
+                    Номер символа в таблице ascii либо
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="hexToAscii" class="form-label">HEX символа</label>
+                  <input id="hexToAscii" type="text" class="form-control" />
+                  <div class="form-text">hex символа</div>
+                </div>
+
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="asciiChar"
+                    readonly="readonly"
+                  />
+                  <div class="form-text">
+                    Символ по коду ASCII.<br />Идёт в <b>ответ</b>.
+                  </div>
+                </div>
+
+                <br />
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  onclick="getCharFromASCII()"
+                >
+                  Перевести
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function getAsciiCode() {
+        var char = $("#charToAscii").val();
+        $("#asciiNum").val(char.charCodeAt(0));
+        $("#asciiHex").val(char.charCodeAt(0).toString(16));
+      }
+
+      function getCharFromASCII() {
+        var num = $("#numToAscii").val();
+        var hex = $("#hexToAscii").val();
+        if (num != "") {
+          $("#asciiChar").val(String.fromCharCode(num));
+        } else {
+          $("#asciiChar").val(String.fromCharCode(parseInt(hex, 16)));
+        }
+      }
+    </script>
   </body>
 </html>
