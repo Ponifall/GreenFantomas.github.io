@@ -28,7 +28,7 @@
         background-color: #f5f5f5;
       }
     </style>
-    <title>Шпаргалка информатика</title>
+    <title>Шпоргалка информатика</title>
   </head>
   <body>
     <main class="container">
@@ -54,9 +54,6 @@
                       <div class="input-group">
                         <span class="input-group-text">K</span>
                         <input type="text" class="form-control" id="logK" />
-                      </div>
-                      <div class="form-text">
-                        Символ для получения ascii кода
                       </div>
                     </div>
 
@@ -429,6 +426,75 @@
             </div>
           </div>
         </div>
+
+        <!--Notation coding-->
+        <div>
+          <div class="row">
+            <h2>Системы счисления</h2>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Перевод числа в различные системы счисления
+                  </h5>
+                  <div id="notationRow"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Поиск оснований</h5>
+                  <p class="card-text">
+                    Поиск оснований систем счислений, в которых заданное число
+                    <var>N</var> <b>оканчивается</b> на заданную цифру
+                    <var>T</var>.
+                  </p>
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="input-group">
+                        <span class="input-group-text">N</span>
+                        <input
+                          id="notationN"
+                          type="text"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="input-group">
+                        <span class="input-group-text">T</span>
+                        <input
+                          id="notationT"
+                          type="text"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="input-group">
+                        <span class="input-group-text">Основания</span>
+                        <input
+                          id="notations"
+                          type="text"
+                          class="form-control"
+                          readonly="readonly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-primary"
+                    onclick="calcNotations()"
+                    style="margin-top: 10px"
+                  >
+                    Найти основания
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -478,6 +544,26 @@
                           />
                         </div>
                       </div>`;
+
+      notationElement = `
+                      <div class="input-group" style="margin-bottom: 2px">
+                        <span class="input-group-text" style="width: 50px">N<sub>X</sub></span>
+                        <input
+                          id="notationX"
+                          type="text"
+                          class="form-control"
+                          oninput="calcNotation(this)"
+                        />
+                      </div>`;
+
+      //Generate notationElements
+      console.log(notationBases);
+      for (i = 0; i < notationBases.length; i++) {
+        $("#notationRow").html(
+          $("#notationRow").html() +
+            notationElement.replaceAll("X", notationBases[i])
+        );
+      }
 
       function showEntropyNumber() {
         $("#entropyRow").html("");
