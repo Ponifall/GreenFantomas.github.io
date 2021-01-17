@@ -17,7 +17,8 @@
         min-height: 100%;
       }
       body {
-        margin-bottom: 80px; /* Margin bottom by footer height */
+        margin-bottom: 100px; /* Margin bottom by footer height */
+        padding-top: 70px; /* Padding top by navbar height */
       }
       .footer {
         position: absolute;
@@ -27,10 +28,51 @@
         line-height: 60px; /* Vertically center the text there */
         background-color: #f5f5f5;
       }
+      a {
+        text-decoration: none;
+      }
     </style>
     <title>Шпоргалка информатика</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">РКБО-01-20</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Информатика
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdown"
+                id="navbar"
+              ></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <main class="container">
       <div class="text-center py-5 px-3">
         <h1>Сессия по информатике</h1>
@@ -38,9 +80,10 @@
       </div>
 
       <div class="row gy-5">
+        <!--Bit encoding count-->
         <div>
           <div class="row">
-            <h2>Двоичное кодирование</h2>
+            <h2 id="bit-encoding">Двоичное кодирование</h2>
             <div class="col">
               <div class="card">
                 <div class="card-body">
@@ -102,7 +145,7 @@
 
         <div>
           <div class="row">
-            <h2>Таблица ASCII</h2>
+            <h2 id="ascii">Таблица ASCII</h2>
             <!-- char to ASCII-->
             <div class="col">
               <div class="card h-100">
@@ -215,9 +258,10 @@
           </div>
         </div>
 
+        <!--Delta-->
         <div>
           <div class="row">
-            <h2>Расстояние между кодами</h2>
+            <h2 id="delta">Расстояние между кодами</h2>
             <div class="col">
               <div class="card">
                 <div class="card-body">
@@ -288,9 +332,10 @@
           </div>
         </div>
 
+        <!--Three bits-->
         <div>
           <div class="row">
-            <h2>Утроение символов сообщения</h2>
+            <h2 id="three-bit">Утроение символов сообщения</h2>
             <div class="col">
               <div class="card">
                 <div class="card-body">
@@ -363,9 +408,10 @@
           </div>
         </div>
 
+        <!-- entropy -->
         <div>
           <div class="row">
-            <h2>Энтропия информации</h2>
+            <h2 id="entropy">Энтропия информации</h2>
             <div class="col">
               <div class="card">
                 <div class="card-body">
@@ -430,7 +476,7 @@
         <!--Notation coding-->
         <div>
           <div class="row">
-            <h2>Системы счисления</h2>
+            <h2 id="notation">Системы счисления</h2>
             <div class="col-md-6">
               <div class="card">
                 <div class="card-body">
@@ -498,7 +544,7 @@
 
         <!--Negative numbers-->
         <div>
-          <h2>Представление чисел в ЭВМ (8-бит)</h2>
+          <h2 id="numbers">Представление чисел в ЭВМ (8-бит)</h2>
           <div class="row">
             <div class="col">
               <div class="card">
@@ -565,6 +611,26 @@
             </div>
           </div>
         </div>
+
+        <!--Bool math-->
+        <div>
+          <div class="row">
+            <h2 id="bool-math">Алгебра логики</h2>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-text">
+                    Мне впдалу реализовывать. Вот норм
+                    <a
+                      href="https://programforyou.ru/calculators/postroenie-tablitci-istinnosti-sknf-sdnf"
+                      >калькулятор</a
+                    >.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -572,11 +638,7 @@
       <div class="container">
         <span class="text-muted"
           >Собственность группы РКБО-01-20. Изготовил сие поделие
-          <a
-            style="text-decoration: none"
-            href="https://github.com/GreenFantomas"
-            >GreenFantomas</a
-          ></span
+          <a href="https://github.com/GreenFantomas">GreenFantomas</a></span
         >
       </div>
     </footer>
@@ -627,6 +689,8 @@
                       </div>
                       </div>`;
 
+      navbarElement = `<li><a class="dropdown-item" href="#">X</a></li>`;
+
       //Generate notationElements
       for (i = 0; i < notationBases.length; i++) {
         $("#notationRow").html(
@@ -634,6 +698,27 @@
             notationElement.replaceAll("X", notationBases[i])
         );
       }
+
+      //Generate navbar
+      $("h2").each(function (index) {
+        anchor = $(this).text();
+        $("#navbar").append(
+          navbarElement.replaceAll("X", anchor).replaceAll("#", "#" + this.id)
+        );
+      });
+
+      var divId;
+
+      //Fix scrolling to anchor with fix navbar
+      $(".dropdown-item").click(function () {
+        divId = $(this).attr("href");
+        $("html, body").animate(
+          {
+            scrollTop: $(divId).offset().top - 54,
+          },
+          100
+        );
+      });
 
       function showEntropyNumber() {
         $("#entropyRow").html("");
