@@ -100,3 +100,53 @@ function calcNotations() {
   }
   $("#notations").val(notations.substring(0, notations.length - 1));
 }
+
+function calcCode(element) {
+  type = element.id.split("Code")[0];
+
+  num = $("#" + type + "Code").val();
+
+  if (num == "" || num.length != 7) {
+    return;
+  }
+
+  reverse = flipbits(num);
+  switch (type) {
+    case "direct":
+      $("#reverseCode").val(reverse);
+      add = fillAndStripBits((parseInt(reverse, 2) + 1).toString(2));
+      $("#addCode").val(add);
+      break;
+    case "reverse":
+      $("#directCode").val(reverse);
+      add = fillAndStripBits((parseInt(num, 2) + 1).toString(2));
+      $("#addCode").val(add);
+      break;
+    case "add":
+      reverse = fillAndStripBits((parseInt(num, 2) - 1).toString(2));
+      $("#reverseCode").val(reverse);
+      $("#directCode").val(flipbits(reverse));
+      break;
+  }
+}
+
+function flipbits(str) {
+  return str
+    .split("")
+    .map(function (b) {
+      return (1 - b).toString();
+    })
+    .join("");
+}
+
+function fillAndStripBits(str) {
+  n = "";
+  for (i = 0; i < 7 - str.length; i++) {
+    n += "0";
+  }
+  n += str;
+  if (n.length > 7) {
+    n = n.substring(1, 7);
+  }
+  return n;
+}

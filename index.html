@@ -495,6 +495,76 @@
             </div>
           </div>
         </div>
+
+        <!--Negative numbers-->
+        <div>
+          <h2>Представление чисел в ЭВМ (8-бит)</h2>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Представление положительных чисел</h5>
+                  <p class="card-text">
+                    Положительные числа в прямом, обратном и дополнительном
+                    кодах изображаются одинаково — цифровая часть содержит
+                    двоичную запись числа, в знаковом разряде содержится 0.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Представление отрицательных чисел</h5>
+                  <p class="card-text">
+                    Отрицательные числа в прямом, обратном и дополнительном
+                    кодах имеют разное изображение.
+                  </p>
+
+                  <label class="form-label">Прямой код</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">1</span>
+                    <input
+                      id="directCode"
+                      type="text"
+                      class="form-control font-monospace"
+                      placeholder="Абсолютное значение"
+                      style="width: 87%"
+                      oninput="calcCode(this)"
+                      maxlength="7"
+                    />
+                  </div>
+                  <label class="form-label">Обратный код</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">1</span>
+                    <input
+                      id="reverseCode"
+                      type="text"
+                      class="form-control font-monospace"
+                      placeholder="Абсолютное значение"
+                      style="width: 87%"
+                      oninput="calcCode(this)"
+                      maxlength="7"
+                    />
+                  </div>
+                  <label class="form-label">Дополнительный код</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">1</span>
+                    <input
+                      id="addCode"
+                      type="text"
+                      class="form-control font-monospace"
+                      placeholder="Абсолютное значение"
+                      style="width: 87%"
+                      oninput="calcCode(this)"
+                      maxlength="7"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -545,8 +615,8 @@
                         </div>
                       </div>`;
 
-      notationElement = `
-                      <div class="input-group" style="margin-bottom: 2px">
+      notationElement = `<div class="mb-1">
+                      <div class="input-group">
                         <span class="input-group-text" style="width: 50px">N<sub>X</sub></span>
                         <input
                           id="notationX"
@@ -554,10 +624,10 @@
                           class="form-control"
                           oninput="calcNotation(this)"
                         />
+                      </div>
                       </div>`;
 
       //Generate notationElements
-      console.log(notationBases);
       for (i = 0; i < notationBases.length; i++) {
         $("#notationRow").html(
           $("#notationRow").html() +
