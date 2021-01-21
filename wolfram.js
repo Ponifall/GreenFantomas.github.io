@@ -7,3 +7,8 @@ function limRedirect() {
     wolframURL + encodeURIComponent(lim) + "+as+x->" + encodeURIComponent(seek)
   );
 }
+
+function maxRedirect() {
+  func = $("#maxFunc").val();
+  window.open(wolframURL + "max+z=" + encodeURIComponent(func));
+}

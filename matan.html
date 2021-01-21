@@ -80,17 +80,21 @@
                   <p class="card-text">
                     Вычисление пределов средствами Wolfram|Alpha. По нажатии
                     кнопки тебя редиректнит на страницу вольфрама с решением.
+                    <br />Пример синтаксиса на языке Wolfram:<br />
+                    <mark>inf</mark> - бесконечность.<br />
+                    <mark>CubeRoot(<var>x</var>)</mark> - кубический корень из
+                    <var>x</var>.<br />
+                    <mark>Root(<var>x</var>, <var>k</var>)</mark> - корень k
+                    степени из <var>x</var>.
                   </p>
 
                   <div class="mb-3">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="input-group">
-                          <span class="input-group-text">lim</span>
-                          <input type="text" class="form-control" id="lim" />
-                        </div>
-                      </div>
+                    <label for="limSeek" class="form-label">Функция</label>
+                    <textarea class="form-control" id="lim" rows="1"></textarea>
+                  </div>
 
+                  <div class="mb-3">
+                    <div class="row">
                       <div class="col-md-6">
                         <div class="input-group">
                           <span class="input-group-text"
@@ -103,13 +107,54 @@
                           />
                         </div>
                       </div>
+                      <div class="col-md-6">
+                        <button
+                          id="encodeBits"
+                          class="btn btn-primary"
+                          onclick="limRedirect()"
+                        >
+                          Вычислить
+                        </button>
+                      </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Max point-->
+        <div>
+          <div class="row">
+            <h2 id="limit">Точка максимума функции</h2>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-text">
+                    Вычисление точки максимума функции средствами Wolfram|Alpha.
+                    По нажатии кнопки тебя редиректнит на страницу вольфрама с
+                    решением.
+                  </p>
+
+                  <div class="mb-3">
+                    <label for="maxFunc" class="form-label">Функция</label>
+                    <div class="input-group">
+                      <span class="input-group-text">z=</span>
+
+                      <textarea
+                        class="form-control"
+                        id="maxFunc"
+                        rows="1"
+                      ></textarea>
+                    </div>
+                  </div>
+
                   <div class="mb-3">
                     <button
                       id="encodeBits"
                       class="btn btn-primary"
-                      onclick="limRedirect()"
+                      onclick="maxRedirect()"
                     >
                       Вычислить
                     </button>
