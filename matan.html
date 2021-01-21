@@ -78,7 +78,7 @@
               <div class="card">
                 <div class="card-body">
                   <p class="card-text">
-                    Вычисление пределов средствами Wolfram|Alpha. По нажатии
+                    Вычисление пределов средствами Wolfram|Alpha. По нажатию
                     кнопки тебя редиректнит на страницу вольфрама с решением.
                     <br />Пример синтаксиса на языке Wolfram:<br />
                     <mark>inf</mark> - бесконечность.<br />
@@ -133,7 +133,7 @@
                 <div class="card-body">
                   <p class="card-text">
                     Вычисление точки максимума функции средствами Wolfram|Alpha.
-                    По нажатии кнопки тебя редиректнит на страницу вольфрама с
+                    По нажатию кнопки тебя редиректнит на страницу вольфрама с
                     решением.
                   </p>
 
@@ -158,6 +158,81 @@
                     >
                       Вычислить
                     </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Differential equations-->
+        <div>
+          <div class="row">
+            <h2 id="limit">Вычисление производной</h2>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-text">
+                    Вычисление производной функции средствами Wolfram|Alpha. По
+                    нажатию кнопки тебя редиректнит на страницу вольфрама с
+                    решением.
+                  </p>
+
+                  <div class="mb-3">
+                    <label for="maxFunc" class="form-label">Функция</label>
+                    <div class="input-group">
+                      <span class="input-group-text">y=</span>
+
+                      <textarea
+                        class="form-control"
+                        id="diffFunc"
+                        rows="1"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div
+                      class="toast hide"
+                      role="alert"
+                      aria-live="assertive"
+                      aria-atomic="true"
+                      id="diffToast"
+                    >
+                      <div class="toast-header">
+                        <strong class="me-auto">Ошибка ввода</strong>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="toast"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="toast-body">Необходимо ввести функцию.</div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="row">
+                      <label for="diffX" class="form-label"
+                        >Найти производную в точке(необязательно)</label
+                      >
+                      <div class="col-md-6">
+                        <div class="input-group">
+                          <span class="input-group-text">x=</span>
+                          <input id="diffX" type="text" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <button
+                          class="btn btn-primary"
+                          onclick="diffRedirect()"
+                        >
+                          Вычислить
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
